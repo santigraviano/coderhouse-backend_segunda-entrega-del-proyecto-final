@@ -1,13 +1,13 @@
 import { Router } from "express"
 import controller from '../controllers/product.controller.js'
-import isAdminMiddleware from "../middlewares/isAdmin.js"
+import onlyAdmin from "../middlewares/onlyAdmin.js"
 
 const router = new Router()
 
 router.get('/', controller.index)
 router.get('/:id', controller.show)
-router.post('/', isAdminMiddleware, controller.create)
-router.put('/:id', isAdminMiddleware, controller.update)
-router.delete('/:id', isAdminMiddleware, controller.delete)
+router.post('/', onlyAdmin, controller.create)
+router.put('/:id', onlyAdmin, controller.update)
+router.delete('/:id', onlyAdmin, controller.delete)
 
 export default router
