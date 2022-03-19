@@ -21,6 +21,7 @@ class MemoryContainer {
       timestamp: Date.now()
     }
     this.items.push(item)
+    return id
   }
 
   update(id, data) {
