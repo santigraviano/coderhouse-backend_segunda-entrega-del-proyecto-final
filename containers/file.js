@@ -36,6 +36,7 @@ class FileContainer {
     }
     items.push(item)
     await fs.writeFile(this.path, JSON.stringify(items))
+    return id
   }
 
   async update(id, data) {
