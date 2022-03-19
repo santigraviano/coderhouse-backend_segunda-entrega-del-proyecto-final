@@ -12,7 +12,8 @@ export default class CartMySQL extends DB {
   }
 
   async save(data) {
-    await super.save({ products: JSON.stringify(data.products) })
+    const id = await super.save({ products: JSON.stringify(data.products) })
+    return id
   }
 
   async update(id, data) {
