@@ -20,14 +20,14 @@ import config from './config.js'
       table.string('image').notNullable()
       table.decimal('price').notNullable()
       table.integer('stock').defaultTo(0)
-      table.timestamp('timestamp')
+      table.timestamp('timestamp').defaultTo(db.fn.now());
     })
 
     await db.schema.dropTableIfExists('carts')
     await db.schema.createTable('carts', table => {
       table.increments('id')
       table.json('products').defaultTo(JSON.stringify([]))
-      table.timestamp('timestamp')
+      table.timestamp('timestamp').defaultTo(db.fn.now());
     })
     console.log('Migrations ran successfully')
   }
