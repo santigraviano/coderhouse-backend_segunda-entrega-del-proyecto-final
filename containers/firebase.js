@@ -34,17 +34,22 @@ class FirebaseContainer {
   }
 
   async save(data) {
-    await this.db.doc().set({
+    const { id } = await this.db.add({
       ...data,
       timestamp: Date.now()
     })
+    return id
   }
 
   async update(id, data) {
+    const item = await this.db.doc(id).get()
+    if (!item.exists) throw new Error('Item not found')
     await this.db.doc(id).update(data)
   }
 
   async delete(id) {
+    const item = await this.db.doc(id).get()
+    if (!item.exists) throw new Error('Item not found')
     await this.db.doc(id).delete()
   }
 
