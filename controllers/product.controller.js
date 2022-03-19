@@ -27,8 +27,8 @@ export default {
   async create(req, res) {
     try {
       const { body } = req
-      await Product.save(body)
-      res.sendStatus(201)
+      const id = await Product.save(body)
+      res.json({ id })
     }
     catch (e) {
       console.error(e.message, e.stack)

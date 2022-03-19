@@ -5,8 +5,8 @@ export default {
 
   async create(req, res) {
     try {
-      await Cart.save({ products: [] })
-      res.sendStatus(201)
+      const id = await Cart.save({ products: [] })
+      res.json({ id })
     }
     catch (e) {
       console.error(e.message, e.stack)
