@@ -22,7 +22,8 @@ class MongoContainer {
   }
 
   async save(data) {
-    await this.model.create(data)
+    const { _id } = await this.model.create(data)
+    return _id
   }
 
   async update(id, data) {
