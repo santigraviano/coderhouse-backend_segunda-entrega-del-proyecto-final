@@ -24,7 +24,8 @@ class SQLContainer {
   }
 
   async save(data) {
-    await this.db(this.table).insert(data)
+    const result = await this.db(this.table).insert(data)
+    return result[0]
   }
 
   async update(id, data) {
